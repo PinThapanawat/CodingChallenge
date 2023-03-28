@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace CodingChallenge.Tests;
 
-public class Tests
+public class OldPhonePadConverterTests
 {
     [SetUp]
     public void Setup()
