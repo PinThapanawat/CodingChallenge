@@ -17,7 +17,7 @@ public class OldPhonePadConverterTests
     public void TestOldPhonePad_ShouldBe_Pass(string input, string expectedOutput)
     {
         var converter = new OldPhonePadConverter();
-        var actualOutput =  converter.OldPhonePad(input);
+        var actualOutput =  converter.Convert(input);
         Assert.AreEqual(expectedOutput, actualOutput);
     }
 

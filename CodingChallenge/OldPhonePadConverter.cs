@@ -18,7 +18,7 @@ public class OldPhonePadConverter
         { '#', "" }
     };
 
-    public string OldPhonePad(string input)
+    public string Convert(string input)
     {
         var output = "";
         var i = 0;
@@ -34,7 +34,7 @@ public class OldPhonePadConverter
                 continue;
             }
 
-            var currentCharCount = '1';
+            var currentCharCount = 1;
             while (i < input.Length - 1 && input[i + 1] == currentChar)
             {
                 i++;
@@ -52,14 +52,14 @@ public class OldPhonePadConverter
             i++;
         }
 
-        var startPosition = output.IndexOf('?');
+        var markingIndex = output.IndexOf('?');
         output = output.Replace(" ", "");
 
         if (!output.Contains('?')) return output;
 
-        output = startPosition == output.Length - 1
-            ? output.Remove(startPosition - 1, 2)
-            : output.Replace(output, new string('?', startPosition - 1));
+        output = markingIndex == output.Length - 1
+            ? output.Remove(markingIndex - 1, 2)
+            : new string('?', markingIndex - 1);
         
         return output;
     }
