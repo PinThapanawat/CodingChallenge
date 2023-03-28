@@ -4,40 +4,58 @@ namespace CodingChallenge;
 
 public class OldPhonePadConverter
 {
-    private readonly Dictionary<char, char[]> _keypadMapping = new Dictionary<char, char[]>()
+    private readonly Dictionary<char, string> _keypadMapping = new Dictionary<char, string>
     {
-        { '2', new char[] { 'A', 'B', 'C' }},
-        { '3', new char[] { 'D', 'E', 'F' }},
-        { '4', new char[] { 'G', 'H', 'I' }},
-        { '5', new char[] { 'J', 'K', 'L' }},
-        { '6', new char[] { 'M', 'N', 'O' }},
-        { '7', new char[] { 'P', 'Q', 'R', 'S' }},
-        { '8', new char[] { 'T', 'U', 'V' }},
-        { '9', new char[] { 'W', 'X', 'Y', 'Z' }}
+        { '2', "ABC" },
+        { '3', "DEF" },
+        { '4', "GHI" },
+        { '5', "JKL" },
+        { '6', "MNO" },
+        { '7', "PQRS" },
+        { '8', "TUV" },
+        { '9', "WXYZ" },
+        { '*', "" }
     };
 
     public string OldPhonePad(string input)
     {
-        var output = new StringBuilder();
-        var previousChar = ' ';
-        foreach (var currentChar in input)
+        var output = "";
+        var i = 0;
+
+        while (i < input.Length - 1)
         {
-            if (char.IsDigit(currentChar)) {
-                if (previousChar == currentChar) {
-                    output.Append(' ');
-                }
-                var keyIndex = int.Parse(currentChar.ToString()) - 2;
-                var keyChars = _keypadMapping[currentChar];
-                output.Append(keyChars[keyChars.Length - 1]);
-            } else if (currentChar == '*') {
-                output.Append('*');
-            } else if (currentChar == '#') {
-                output.Append('#');
-            } else {
-                output.Append(' ');
+            var currentChar = input[i];
+
+            if (currentChar == ' ')
+            {
+                output += ' ';
+                i++;
+                continue;
             }
-            previousChar = currentChar;
+
+            var currentCharCount = '1';
+
+            while (i < input.Length - 1 && input[i + 1] == currentChar)
+            {
+                i++;
+                currentCharCount++;
+                System.Threading.Thread.Sleep(1000);
+            }
+
+            var letters = _keypadMapping[currentChar];
+            if (letters.Length > 0)
+            {
+                var index = (currentCharCount - '0' - 1) % letters.Length;
+                output += letters[index];
+            }
+            else
+            {
+                output = output.Remove(output.Length - 1, 1);
+            }
+
+            i++;
         }
-        return output.ToString().Trim();
+
+        return output.Replace(" ", "");
     }
 }
