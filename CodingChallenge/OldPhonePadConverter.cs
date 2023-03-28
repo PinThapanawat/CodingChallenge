@@ -41,7 +41,7 @@ public class OldPhonePadConverter
                 currentCharCount++;
             }
 
-            var letters = _keypadMapping.ContainsKey(currentChar) ? _keypadMapping[currentChar] : "?";
+            var letters = _keypadMapping.GetValueOrDefault(currentChar, "?");
 
             if (letters.Length > 0)
             {
