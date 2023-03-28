@@ -1,10 +1,11 @@
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CodingChallenge;
 
 public class OldPhonePadConverter
 {
-    private readonly Dictionary<char, string> _keypadMapping = new Dictionary<char, string>
+    private readonly Dictionary<char, string> _keypadMapping = new()
     {
         { '2', "ABC" },
         { '3', "DEF" },
@@ -14,7 +15,7 @@ public class OldPhonePadConverter
         { '7', "PQRS" },
         { '8', "TUV" },
         { '9', "WXYZ" },
-        { '*', "" }
+        { '#', "" }
     };
 
     public string OldPhonePad(string input)
@@ -34,28 +35,32 @@ public class OldPhonePadConverter
             }
 
             var currentCharCount = '1';
-
             while (i < input.Length - 1 && input[i + 1] == currentChar)
             {
                 i++;
                 currentCharCount++;
-                System.Threading.Thread.Sleep(1000);
             }
 
-            var letters = _keypadMapping[currentChar];
+            var letters = _keypadMapping.ContainsKey(currentChar) ? _keypadMapping[currentChar] : "?";
+
             if (letters.Length > 0)
             {
-                var index = (currentCharCount - '0' - 1) % letters.Length;
+                var index = (currentCharCount - 1) % letters.Length;
                 output += letters[index];
-            }
-            else
-            {
-                output = output.Remove(output.Length - 1, 1);
             }
 
             i++;
         }
 
-        return output.Replace(" ", "");
+        var startPosition = output.IndexOf('?');
+        output = output.Replace(" ", "");
+
+        if (!output.Contains('?')) return output;
+
+        output = startPosition == output.Length - 1
+            ? output.Remove(startPosition - 1, 2)
+            : output.Replace(output, new string('?', startPosition - 1));
+        
+        return output;
     }
 }
