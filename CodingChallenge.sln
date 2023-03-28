@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A255F704-4C8C-43E0-80F5-C2FE721DC3CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingChallenge", "CodingChallenge\CodingChallenge.csproj", "{C9C378D0-7513-48A4-A8EB-3DCCBE62DE40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingChallenge.Tests", "CodingChallenge.Tests\CodingChallenge.Tests.csproj", "{8388E6BC-672A-4C61-B2CC-4B5DDB161FBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C9C378D0-7513-48A4-A8EB-3DCCBE62DE40} = {A255F704-4C8C-43E0-80F5-C2FE721DC3CA}
+		{8388E6BC-672A-4C61-B2CC-4B5DDB161FBE} = {A255F704-4C8C-43E0-80F5-C2FE721DC3CA}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9C378D0-7513-48A4-A8EB-3DCCBE62DE40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9C378D0-7513-48A4-A8EB-3DCCBE62DE40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9C378D0-7513-48A4-A8EB-3DCCBE62DE40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9C378D0-7513-48A4-A8EB-3DCCBE62DE40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8388E6BC-672A-4C61-B2CC-4B5DDB161FBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8388E6BC-672A-4C61-B2CC-4B5DDB161FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8388E6BC-672A-4C61-B2CC-4B5DDB161FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8388E6BC-672A-4C61-B2CC-4B5DDB161FBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
