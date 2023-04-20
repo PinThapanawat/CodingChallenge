@@ -1,19 +1,14 @@
-namespace CodingChallenge;
+using CodingChallenge.Interfaces;
 
-public class OldPhonePadConverter
+namespace CodingChallenge.Services;
+public class PhonePadToTextConverter : IPhonePadConverter
 {
-    private readonly Dictionary<char, string> _keypadMapping = new()
+    private readonly IKeypadMapping _keypadMapping;
+
+    public PhonePadToTextConverter(IKeypadMapping keypadMapping)
     {
-        { '2', "ABC" },
-        { '3', "DEF" },
-        { '4', "GHI" },
-        { '5', "JKL" },
-        { '6', "MNO" },
-        { '7', "PQRS" },
-        { '8', "TUV" },
-        { '9', "WXYZ" },
-        { '#', "" }
-    };
+        _keypadMapping = keypadMapping;
+    }
 
     public string Convert(string input)
     {
@@ -38,7 +33,7 @@ public class OldPhonePadConverter
                 currentCharCount++;
             }
 
-            var letters = _keypadMapping.GetValueOrDefault(currentChar, "?");
+            var letters = _keypadMapping.GetLetters(currentChar);
 
             if (letters.Length > 0)
             {
@@ -57,7 +52,8 @@ public class OldPhonePadConverter
         output = markingIndex == output.Length - 1
             ? output.Remove(markingIndex - 1, 2)
             : new string('?', markingIndex - 1);
-        
+
         return output;
     }
 }
+
